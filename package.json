@@ -1,0 +1,34 @@
+{
+  "name": "@matthewmorgan/round-half-up",
+  "version": "0.2.4",
+  "description": "A module for rounding decimals in JavaScript",
+  "main": "round.js",
+  "scripts": {
+    "test": "jest ./spec/*",
+    "build": "babel src -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/matthewmorgan/round-half-up.git"
+  },
+  "keywords": [
+    "Math",
+    "rounding",
+    "decimal",
+    "currency",
+    "money"
+  ],
+  "author": "Matthew Morgan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matthewmorgan/round-half-up/issues"
+  },
+  "homepage": "https://github.com/matthewmorgan/round-half-up#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1",
+    "jest-cli": "^21.2.1"
+  }
+}
