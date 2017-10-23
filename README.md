@@ -30,7 +30,7 @@ This module helps you do just that.
 ## Installation
 
 ```bash
-npm install @matthewmorgan/round-half-up
+npm install simple-round
 ```
 
 ## API
