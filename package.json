@@ -1,6 +1,6 @@
 {
-  "name": "@matthewmorgan/round-half-up",
-  "version": "0.2.4",
+  "name": "simple-round",
+  "version": "0.1.1",
   "description": "A module for rounding decimals in JavaScript",
   "main": "round.js",
   "scripts": {
@@ -9,21 +9,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/matthewmorgan/round-half-up.git"
+    "url": "git+ssh://git@github.com/matthewmorgan/simple-round.git"
   },
   "keywords": [
     "Math",
-    "rounding",
+    "decimal rounding",
     "decimal",
     "currency",
-    "money"
+    "java rounding",
+    "money",
+    "round half up",
+    "round half down"
   ],
   "author": "Matthew Morgan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matthewmorgan/round-half-up/issues"
+    "url": "https://github.com/matthewmorgan/simple-round/issues"
   },
-  "homepage": "https://github.com/matthewmorgan/round-half-up#readme",
+  "homepage": "https://github.com/matthewmorgan/simple-round#readme",
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
