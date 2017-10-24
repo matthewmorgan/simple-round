@@ -1,6 +1,6 @@
 {
   "name": "simple-round",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "A module for rounding decimals in JavaScript",
   "main": "round.js",
   "scripts": {

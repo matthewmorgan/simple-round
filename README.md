@@ -35,43 +35,19 @@ npm install simple-round
 
 ## API
 
-### round({number, direction, precision})
-
-```javascript
-const {round, DIRECTIONS} = require('simple-round');
-
-
-const args = {
-  number: 3.14159,
-  precision: 2,
-  direction: DIRECTIONS.HALF_UP
-};
-
-expect(round(args)).toEqual(3.14);
-````
-
-Note: sanity rules with negative numbers as well.  Does not round toward positive infinity like default JS methods.
-
-```javascript
-const otherArgs = {
-    number: -3.14159,
-    precision: 4
-};
-
-expect(round(otherArgs)).toEqual(-3.1416);
-```
-
-Available `DIRECTIONS` currently include `HALF_UP` (default) `HALF_DOWN`, `UP`, and `DOWN`.
-
-Default `precision` is 2.
 ### simpleRound(number)
-There is a convenience method that allows you to only supply the `number` argument, and get rounding HALF_UP to 2 decimal places:
+Supply the `number` argument, and get rounding HALF_UP to 2 decimal places:
 
 ```javascript
 const {simpleRound} = require('simple-round');
 
 expect(simpleRound(3.14159)).toEqual(3.14);
+
 expect(simpleRound(2.345)).toEqual(2.35);
+
+expect(simpleRound(0.999)).toEqual(1.00);
+
+expect(simpleRound(0.285)).toEqual(0.29);
 ```
 
 ## Testing
