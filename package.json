@@ -1,6 +1,6 @@
 {
   "name": "simple-round",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "A module for rounding decimals in JavaScript",
   "main": "round.js",
   "scripts": {
@@ -18,8 +18,7 @@
     "currency",
     "java rounding",
     "money",
-    "round half up",
-    "round half down"
+    "round half up"
   ],
   "author": "Matthew Morgan",
   "license": "MIT",

@@ -230,24 +230,28 @@ describe('simpleRound works for decimal fractions less than one', ()=> {
     test('a number that causes rollover', ()=> {
         let number = 0.999;
         expect(simpleRound(number)).toEqual(1.00);
-    })
+    });
+
+    test('a number that causes rollover', ()=> {
+        let number = 0.99;
+        expect(simpleRound(number)).toEqual(0.99);
+    });
+
 
     test('handles non-terminating decimals that round down', ()=> {
       let number = 0.333333;
       expect(simpleRound(number)).toEqual(0.33);
-    })
+    });
 
     test('handles non-terminating decimals that round up', ()=> {
         let number = 0.6666666;
         expect(simpleRound(number)).toEqual(0.67);
-    })
+    });
 
     test('handles non-terminating decimals that round up', ()=> {
         let number = 0.09666;
         expect(simpleRound(number)).toEqual(0.10);
-    })
-
-
+    });
 });
 
 
