@@ -33,6 +33,7 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
   doValidationCheck({number, direction, precision});
 
   let numberString = String(number);
+  let sign = Math.sign(number);
   numberString = numberString.indexOf('.') !== -1 ? numberString : `${numberString}.`;
   const [originalInteger, fullDecimal] = numberString.split('.');
   if (fullDecimal.length < precision + 1) {
@@ -70,7 +71,11 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
       } else {
         integerPortion = String(originalInteger);
       }
-      return Number(`${integerPortion}.${decimalPortion}`);
+      const result = Number(`${integerPortion}.${decimalPortion}`);
+      if (Math.sign(result) !== sign){
+          return -result;
+      }
+      return result;
     }
 
     case DIRECTIONS.DOWN: {

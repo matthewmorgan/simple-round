@@ -446,6 +446,10 @@ describe('simpleRound works for decimal fractions less than one', () => {
     expect(simpleRound(number)).toEqual(0.99);
   });
 
+    test('a small negative number that causes rollover', () => {
+        let number = -0.999;
+        expect(simpleRound(number)).toEqual(-1);
+    });
 
   test('handles non-terminating decimals that round down', () => {
     let number = 0.333333;
