@@ -25,7 +25,7 @@ Round 3.14159 to 4 decimal places
 
 IE, if you are rounding to 'x' places, and the digit in the 'x+1' position is equal to or greater than 5, round the 'x-th' digit up.  Otherwise just drop the extra decimal places.
 
-This module helps you do just that.
+This module helps you do just that.  It also provides a more granular method if you prefer a different rounding strategy.
 
 ## Installation
 
