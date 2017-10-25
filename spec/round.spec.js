@@ -140,10 +140,49 @@ describe('Round HALF_DOWN handles edge cases', ()=> {
 
   test('can correctly round a six when negative', ()=> {
     let number = -1.23456;
-    let direction = DIRECTIONS.HALF_UP;
+    let direction = DIRECTIONS.HALF_DOWN;
     let precision = 4;
     expect(round({number, direction, precision})).toEqual(-1.2346);
   });
+
+  test('can correctly round a 5', ()=> {
+    let number = 0.285;
+    let direction = DIRECTIONS.HALF_DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(0.28);
+  });
+
+  test('can correctly round a 5 when number is negative', ()=> {
+    let number = -0.285;
+    let direction = DIRECTIONS.HALF_DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(-0.28);
+  });
+
+  test('can correctly round a number that rolls', ()=> {
+    let number = 0.999;
+    let direction = DIRECTIONS.HALF_DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(1.00);
+  });
+
+  test('can correctly round a number that doesnt roll', ()=> {
+    let number = 0.995;
+    let direction = DIRECTIONS.HALF_DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(0.99);
+  });
+
+  test('can correctly round a number that just rolls', ()=> {
+    let number = 0.996;
+    let direction = DIRECTIONS.HALF_DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(1.00);
+  });
+
+
+
+
 });
 
 
