@@ -30,6 +30,8 @@ if (!String.prototype.padStart) {
 
 function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
 
+  doValidationCheck({number, direction, precision});
+
   let numberString = String(number);
   numberString = numberString.indexOf('.') !== -1 ? numberString : `${numberString}.`;
   const [originalInteger, fullDecimal] = numberString.split('.');
@@ -46,7 +48,8 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
     default:
     case DIRECTIONS.HALF_UP: {
       let integerPortion;
-      if (+roundingHint >= 5) {
+      let hintCheck = direction === DIRECTIONS.HALF_DOWN ? (hint) => hint > 5 : (hint) => hint >= 5;
+      if (hintCheck(+roundingHint)) {
         let decimalNumber = Number(decimalPortion) + 1;
         if (decimalNumber - decimalNumber % 10 > decimalPortion - decimalPortion % 10) {
           let decStart = 0;
@@ -95,4 +98,20 @@ function countLeadingZeroes(num) {
   return i;
 }
 
+function doValidationCheck({number, precision, direction}){
+  if (typeof number !== 'number'){
+    throw new Error('number must be of type Number!');
+  }
+
+  const contained = Object.keys(DIRECTIONS)
+      .map(key => DIRECTIONS[key] === direction)
+      .filter(el => el === true);
+  if (!contained.length){
+    throw new Error('direction must be one of UP, DOWN, HALF_UP, or HALF_DOWN');
+  }
+
+  if (precision < 0 || parseInt(precision) !== precision){
+    throw new Error('precision must be an integer 0 or greater')
+  }
+}
 export {round, simpleRound, DIRECTIONS};
