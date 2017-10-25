@@ -69,6 +69,13 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
       }
       return Number(`${integerPortion}.${decimalPortion}`);
     }
+
+    case DIRECTIONS.DOWN: {
+      let power = 10 ** precision;
+      let sign = Math.sign(number);
+      return Math.floor(Math.abs(number) * power) / power * sign;
+    }
+
     case DIRECTIONS.UP: {
       let power = 10 ** precision;
       let sign = Math.sign(number);

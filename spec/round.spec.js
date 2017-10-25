@@ -146,6 +146,116 @@ describe('Round HALF_UP handles edge cases', () => {
 //   });
 // });
 //
+
+describe('Round DOWN for positive numbers', () => {
+  test('can round pi DOWN to 2 decimal places', () => {
+    let number = 3.14159;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(3.14);
+  });
+
+  test('can round pi DOWN to 3 decimal places', () => {
+    let number = 3.14159;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 3;
+    expect(round({number, direction, precision})).toEqual(3.141);
+  });
+});
+
+describe('Round DOWN for negative numbers', () => {
+  test('can round -pi DOWN to 2 decimal places', () => {
+    let number = -3.14159;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(-3.14);
+  });
+
+  test('can round -pi DOWN to 3 decimal places', () => {
+    let number = -3.14159;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 3;
+    expect(round({number, direction, precision})).toEqual(-3.141);
+  });
+});
+
+describe('round DOWN handles boundaries', () => {
+  test('rounds 5', () => {
+    let number = 0.285;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(0.28);
+  });
+
+  test('rounds 5 when negative', () => {
+    let number = -0.285;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(-0.28);
+  });
+
+  test('rounds 9', () => {
+    let number = 0.299;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(0.29);
+  });
+
+  test('rounds 9 when negative', () => {
+    let number = -0.299;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(-0.29);
+  });
+
+  test('doesnt round when precision is the same as the length of the number', () => {
+    let number = 0.999;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 3;
+    expect(round({number, direction, precision})).toEqual(0.999);
+  });
+
+  test('doesnt round when precision is the same as the length of the negative number', () => {
+    let number = -0.999;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 3;
+    expect(round({number, direction, precision})).toEqual(-0.999);
+  });
+
+
+  test('rounds a long number', () => {
+    let number = 0.99999999;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(0.99);
+  });
+
+  test('rounds a long negative number', () => {
+    let number = -0.99999999;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 2;
+    expect(round({number, direction, precision})).toEqual(-0.99);
+  });
+});
+
+
+describe('Round DOWN handles edge cases', () => {
+  test('supplied precision is longer than number', () => {
+    let number = 3.14159;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 10;
+    expect(round({number, direction, precision})).toEqual(3.14159);
+  });
+
+  test('number is undefined', () => {
+    let number;
+    let direction = DIRECTIONS.DOWN;
+    let precision = 10;
+    expect(round({number, direction, precision})).toEqual(0);
+  });
+});
+
+
 describe('Round UP for positive numbers', () => {
   test('can round pi UP to 2 decimal places', () => {
     let number = 3.14159;
