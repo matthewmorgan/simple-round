@@ -35,6 +35,8 @@ npm install simple-round
 
 ## API
 
+* NB: Don't forget the curly braces in your `require`! *
+
 ### simpleRound(number)
 Supply the `number` argument, and get rounding HALF_UP to 2 decimal places:
 
