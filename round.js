@@ -49,6 +49,7 @@ function round(_ref) {
   doValidationCheck({ number: number, direction: direction, precision: precision });
 
   var numberString = String(number);
+  var sign = Math.sign(number);
   numberString = numberString.indexOf('.') !== -1 ? numberString : numberString + '.';
 
   var _numberString$split = numberString.split('.'),
@@ -96,21 +97,25 @@ function round(_ref) {
         } else {
           integerPortion = String(originalInteger);
         }
-        return Number(integerPortion + '.' + decimalPortion);
+        var result = Number(integerPortion + '.' + decimalPortion);
+        if (Math.sign(result) !== sign) {
+          return -result;
+        }
+        return result;
       }
 
     case DIRECTIONS.DOWN:
       {
         var power = Math.pow(10, precision);
-        var sign = Math.sign(number);
-        return Math.floor(Math.abs(number) * power) / power * sign;
+        var _sign = Math.sign(number);
+        return Math.floor(Math.abs(number) * power) / power * _sign;
       }
 
     case DIRECTIONS.UP:
       {
         var _power = Math.pow(10, precision);
-        var _sign = Math.sign(number);
-        return Math.ceil(Math.abs(number) * _power) / _power * _sign;
+        var _sign2 = Math.sign(number);
+        return Math.ceil(Math.abs(number) * _power) / _power * _sign2;
       }
   }
 }
