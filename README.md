@@ -50,6 +50,42 @@ expect(simpleRound(0.999)).toEqual(1.00);
 expect(simpleRound(0.285)).toEqual(0.29);
 ```
 
+### round({number, direction, precision})
+
+- `precision` must be a non-negative integer
+- `number` must be a number
+- `direction` is defined in the example below
+
+```javascript
+const {round, DIRECTIONS} = require('simple-round');
+
+/*
+DIRECTIONS.UP
+DIRECTIONS.DOWN
+DIRECTIONS.HALF_UP
+DIRECTIONS.HALF_DOWN
+ */
+
+
+let number = 3.14159;
+let direction = DIRECTIONS.DOWN;
+let precision = 3;
+
+expect(round({number, direction, precision})).toEqual(3.141);
+
+let direction = DIRECTIONS.UP;
+
+expect(round({number, direction, precision})).toEqual(3.142);
+
+let direction = DIRECTIONS.HALF_UP;
+
+expect(round({number, direction, precision})).toEqual(3.142);
+
+let direction = DIRECTIONS.HALF_DOWN;
+
+expect(round({number, direction, precision})).toEqual(3.141);
+
+```
 ## Testing
 
 ```bash

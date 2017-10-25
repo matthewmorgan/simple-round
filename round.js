@@ -159,8 +159,10 @@ function doValidationCheck(_ref2) {
 
   var contained = Object.keys(DIRECTIONS).map(function (key) {
     return DIRECTIONS[key] === direction;
+  }).filter(function (el) {
+    return el === true;
   });
-  if (!contained) {
+  if (!contained.length) {
     throw new Error('direction must be one of UP, DOWN, HALF_UP, or HALF_DOWN');
   }
 
