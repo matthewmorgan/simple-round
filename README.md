@@ -45,10 +45,11 @@ npm install simple-round
 
 The default method both rounds half-up to 2 decimal places and returns the result as a string, formatted to 2 decimal places.  This is different than using JavaScript's `Number.toFixed()` method, which sometimes rounds up and sometimes rounds down (?), or `Math.round()`, which does things you might not expect, including returning your result in scientific notation, because...?
 
-NB: because this is the _default_ export from the module, you don't need the `{braces}` to import `fixedSimpleRound`!
+The `{braces}` are required in the `require`:
+
 
 ```javascript
-const fixedSimpleRound = require('simple-round');
+const {fixedSimpleRound} = require('simple-round');
 
 expect(fixedSimpleRound(3.14159)).toEqual('3.14');
 ```

@@ -137,6 +137,5 @@ function doValidationCheck({number, precision, direction}){
   }
 }
 
-export default fixedSimpleRound;
 
-export {round, fixedRound, simpleRound, DIRECTIONS};
+export {round, fixedSimpleRound, fixedRound, simpleRound, DIRECTIONS};

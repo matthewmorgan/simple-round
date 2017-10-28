@@ -1,6 +1,5 @@
-import fixedSimpleRound from '../src/round';
 
-import {round, fixedRound, simpleRound, DIRECTIONS} from '../src/round';
+import {round, fixedRound, fixedSimpleRound, simpleRound, DIRECTIONS} from '../src/round';
 
 describe('Round HALF_UP for positive numbers', () => {
   test('can round pi HALF_UP to 2 decimal places', () => {
