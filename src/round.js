@@ -5,6 +5,10 @@ const DIRECTIONS = {
   DOWN:      2
 };
 
+function fixedSimpleRound(number){
+  return simpleRound(number).toFixed(2);
+}
+
 function simpleRound(number = 0) {
   return round({number});
 }
@@ -119,4 +123,7 @@ function doValidationCheck({number, precision, direction}){
     throw new Error('precision must be an integer 0 or greater')
   }
 }
+
+export default fixedSimpleRound;
+
 export {round, simpleRound, DIRECTIONS};
