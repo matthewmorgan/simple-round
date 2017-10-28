@@ -13,6 +13,10 @@ var DIRECTIONS = {
   DOWN: 2
 };
 
+function fixedSimpleRound(number) {
+  return simpleRound(number).toFixed(2);
+}
+
 function simpleRound() {
   var number = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
@@ -37,13 +41,22 @@ if (!String.prototype.padStart) {
   };
 }
 
-function round(_ref) {
-  var _ref$number = _ref.number,
-      number = _ref$number === undefined ? 0 : _ref$number,
-      _ref$direction = _ref.direction,
-      direction = _ref$direction === undefined ? DIRECTIONS.HALF_UP : _ref$direction,
+function fixedRound(_ref) {
+  var number = _ref.number,
+      direction = _ref.direction,
       _ref$precision = _ref.precision,
       precision = _ref$precision === undefined ? 2 : _ref$precision;
+
+  return round({ number: number, direction: direction, precision: precision }).toFixed(precision);
+}
+
+function round(_ref2) {
+  var _ref2$number = _ref2.number,
+      number = _ref2$number === undefined ? 0 : _ref2$number,
+      _ref2$direction = _ref2.direction,
+      direction = _ref2$direction === undefined ? DIRECTIONS.HALF_UP : _ref2$direction,
+      _ref2$precision = _ref2.precision,
+      precision = _ref2$precision === undefined ? 2 : _ref2$precision;
 
 
   doValidationCheck({ number: number, direction: direction, precision: precision });
@@ -153,10 +166,10 @@ function countLeadingZeroes(num) {
   return i;
 }
 
-function doValidationCheck(_ref2) {
-  var number = _ref2.number,
-      precision = _ref2.precision,
-      direction = _ref2.direction;
+function doValidationCheck(_ref3) {
+  var number = _ref3.number,
+      precision = _ref3.precision,
+      direction = _ref3.direction;
 
   if (typeof number !== 'number') {
     throw new Error('number must be of type Number!');
@@ -175,6 +188,9 @@ function doValidationCheck(_ref2) {
     throw new Error('precision must be an integer 0 or greater');
   }
 }
+
+exports.default = fixedSimpleRound;
 exports.round = round;
+exports.fixedRound = fixedRound;
 exports.simpleRound = simpleRound;
 exports.DIRECTIONS = DIRECTIONS;

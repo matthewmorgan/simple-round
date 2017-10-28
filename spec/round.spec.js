@@ -516,13 +516,11 @@ describe('fixedSimpleRound', () => {
 
   test('fixedSimpleRound works for leading zeroes', () => {
     let number = 0.099;
-    console.log(fixedSimpleRound(number));
     expect(fixedSimpleRound(number)).toEqual("0.10");
   });
 
   test('fixedSimpleRound works for leading zeroes', () => {
     let number = -0.099;
-    console.log(fixedSimpleRound(number));
     expect(fixedSimpleRound(number)).toEqual("-0.10");
   });
 });
@@ -551,7 +549,6 @@ describe('fixedRound', ()=> {
 
   test('fixedRound works for leading zeroes 3', () => {
     let number = 0.099;
-    console.log(fixedRound({number}));
     expect(fixedRound({number})).toEqual("0.10");
   });
 
@@ -579,6 +576,45 @@ describe('fixedRound', ()=> {
     let direction = DIRECTIONS.UP;
     expect(fixedRound({number, precision, direction})).toEqual("-0.100");
   });
+
+});
+
+
+describe('Zero-precision cases', ()=> {
+  test('123.5 to 0 precision HALF_DOWN', ()=> {
+    let number = 123.5;
+    let precision = 0;
+    let direction = DIRECTIONS.HALF_DOWN;
+    expect(round({number, precision, direction})).toEqual(123);
+  });
+
+  test('123.4 to 0 precision HALF_UP', ()=> {
+    let number = 123.4;
+    let precision = 0;
+    let direction = DIRECTIONS.HALF_UP;
+    expect(round({number, precision, direction})).toEqual(123);
+  });
+
+  test('123.6 to 0 precision HALF_UP', ()=> {
+    let number = 123.6;
+    let precision = 0;
+    let direction = DIRECTIONS.HALF_UP;
+    expect(round({number, precision, direction})).toEqual(124);
+  });
+
+  test('123.5 to 0 precision HALF_UP', ()=> {
+    let number = 123.5;
+    let precision = 0;
+    let direction = DIRECTIONS.HALF_UP;
+    expect(round({number, precision, direction})).toEqual(124);
+  });
+
+  test('-123.5 to 0 precision HALF_UP', ()=> {
+    let number = -123.5;
+    let precision = 0;
+    let direction = DIRECTIONS.HALF_UP;
+    expect(round({number, precision, direction})).toEqual(-124);
+  })
 
 });
 

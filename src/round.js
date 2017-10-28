@@ -52,7 +52,7 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
   const unroundedDecimal = fullDecimal.slice(0, precision + 1);
   let leadingZeroes = countLeadingZeroes(unroundedDecimal);
   let roundingHint = unroundedDecimal.slice(-1);
-  let decimalPortion = unroundedDecimal.slice(0, precision);
+  let decimalPortion = unroundedDecimal.slice(0, Math.max(precision, 1));
 
   switch (direction) {
     default:
@@ -60,12 +60,17 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
       let integerPortion;
       let hintCheck = direction === DIRECTIONS.HALF_DOWN ? (hint) => hint > 5 : (hint) => hint >= 5;
       if (hintCheck(+roundingHint)) {
-        let decimalNumber = Number(decimalPortion) + 1;
+        let decimalNumber;
+        if (precision === 0){
+          decimalNumber = Number(decimalPortion) + 10;
+        } else {
+          decimalNumber = Number(decimalPortion) + 1;
+        }
         if (decimalNumber - decimalNumber % 10 > decimalPortion - decimalPortion % 10) {
           let decStart = 0;
           let integerNumber;
           if (leadingZeroes === 0) {
-            integerNumber = Number(originalInteger) + 1;
+            integerNumber = Number(originalInteger) + sign;
             decStart = 1;
           } else {
             integerNumber = Number(originalInteger);
@@ -79,6 +84,9 @@ function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
         }
       } else {
         integerPortion = String(originalInteger);
+        if (precision === 0){
+          decimalPortion = 0;
+        }
       }
       const result = Number(`${integerPortion}.${decimalPortion}`);
       if (Math.sign(result) !== sign){
