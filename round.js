@@ -77,7 +77,7 @@ function round(_ref2) {
   var unroundedDecimal = fullDecimal.slice(0, precision + 1);
   var leadingZeroes = countLeadingZeroes(unroundedDecimal);
   var roundingHint = unroundedDecimal.slice(-1);
-  var decimalPortion = unroundedDecimal.slice(0, precision);
+  var decimalPortion = unroundedDecimal.slice(0, Math.max(precision, 1));
 
   switch (direction) {
     default:
@@ -90,12 +90,17 @@ function round(_ref2) {
           return hint >= 5;
         };
         if (hintCheck(+roundingHint)) {
-          var decimalNumber = Number(decimalPortion) + 1;
+          var decimalNumber = void 0;
+          if (precision === 0) {
+            decimalNumber = Number(decimalPortion) + 10;
+          } else {
+            decimalNumber = Number(decimalPortion) + 1;
+          }
           if (decimalNumber - decimalNumber % 10 > decimalPortion - decimalPortion % 10) {
             var decStart = 0;
             var integerNumber = void 0;
             if (leadingZeroes === 0) {
-              integerNumber = Number(originalInteger) + 1;
+              integerNumber = Number(originalInteger) + sign;
               decStart = 1;
             } else {
               integerNumber = Number(originalInteger);
@@ -109,6 +114,9 @@ function round(_ref2) {
           }
         } else {
           integerPortion = String(originalInteger);
+          if (precision === 0) {
+            decimalPortion = 0;
+          }
         }
         var result = Number(integerPortion + '.' + decimalPortion);
         if (Math.sign(result) !== sign) {
