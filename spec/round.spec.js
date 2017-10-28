@@ -1,6 +1,6 @@
 import fixedSimpleRound from '../src/round';
 
-import {round, simpleRound, DIRECTIONS} from '../src/round';
+import {round, fixedRound, simpleRound, DIRECTIONS} from '../src/round';
 
 describe('Round HALF_UP for positive numbers', () => {
   test('can round pi HALF_UP to 2 decimal places', () => {
@@ -525,6 +525,61 @@ describe('fixedSimpleRound', () => {
     console.log(fixedSimpleRound(number));
     expect(fixedSimpleRound(number)).toEqual("-0.10");
   });
+});
+
+describe('fixedRound', ()=> {
+  test('fixedRound returns 2 decimal places', () => {
+    let number = 3.14159;
+    let precision = 2;
+    expect(fixedRound({number, precision})).toEqual("3.14");
+  });
+
+  test('fixedRound works for leading zeroes', () => {
+    let number = 1.091;
+    expect(fixedRound({number})).toEqual("1.09");
+  });
+
+  test('fixedRound works for leading zeroes 1', () => {
+    let number = 1.099;
+    expect(fixedRound({number})).toEqual("1.10");
+  });
+
+  test('fixedRound works for leading zeroes 2', () => {
+    let number = -1.099;
+    expect(fixedRound({number})).toEqual("-1.10");
+  });
+
+  test('fixedRound works for leading zeroes 3', () => {
+    let number = 0.099;
+    console.log(fixedRound({number}));
+    expect(fixedRound({number})).toEqual("0.10");
+  });
+
+  test('fixedRound works for leading zeroes 4', () => {
+    let number = -0.099;
+    expect(fixedRound({number})).toEqual("-0.10");
+  });
+
+  test('fixedRound works for 3 decimal places', () => {
+    let number = -0.0999;
+    let precision = 3;
+    expect(fixedRound({number, precision})).toEqual("-0.100");
+  });
+
+  test('fixedRound works for 3 decimal places rounding down', () => {
+    let number = -0.0999;
+    let precision = 3;
+    let direction = DIRECTIONS.DOWN;
+    expect(fixedRound({number, precision, direction})).toEqual("-0.099");
+  });
+
+  test('fixedRound works for 3 decimal places rounding up', () => {
+    let number = -0.0999;
+    let precision = 3;
+    let direction = DIRECTIONS.UP;
+    expect(fixedRound({number, precision, direction})).toEqual("-0.100");
+  });
+
 });
 
 

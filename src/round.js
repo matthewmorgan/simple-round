@@ -32,6 +32,11 @@ if (!String.prototype.padStart) {
   };
 }
 
+
+function fixedRound({number, direction, precision=2}){
+  return round({number, direction, precision}).toFixed(precision);
+}
+
 function round({number = 0, direction = DIRECTIONS.HALF_UP, precision = 2}) {
 
   doValidationCheck({number, direction, precision});
@@ -126,4 +131,4 @@ function doValidationCheck({number, precision, direction}){
 
 export default fixedSimpleRound;
 
-export {round, simpleRound, DIRECTIONS};
+export {round, fixedRound, simpleRound, DIRECTIONS};
