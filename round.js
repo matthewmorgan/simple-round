@@ -197,8 +197,8 @@ function doValidationCheck(_ref3) {
   }
 }
 
-exports.default = fixedSimpleRound;
 exports.round = round;
+exports.fixedSimpleRound = fixedSimpleRound;
 exports.fixedRound = fixedRound;
 exports.simpleRound = simpleRound;
 exports.DIRECTIONS = DIRECTIONS;
